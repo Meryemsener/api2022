@@ -1,3 +1,5 @@
+package get_requests;
+
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -26,7 +28,7 @@ public class Get02 {
 @Test
     public void get02(){
     //i) Set the url
-    String  url="https://restful-booker.herokuapp.com/booking/1005";
+    String  url="https://restful-booker.herokuapp.com/booking/1075";
 
     //      ii)Set the expected data(POST_PUT_PATCH)
 
