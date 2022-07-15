@@ -30,11 +30,11 @@ public class Get04 extends JsonPlaceHolderBaseUrl {
      */
 
     @Test
-    public void get01(){
+    public void get01() {
 
         //1. Step: Set the Url
 
-        spec.pathParams("first","todos");
+        spec.pathParams("first", "todos");
 
         //2. Step: Set the expected data
 
@@ -51,7 +51,7 @@ public class Get04 extends JsonPlaceHolderBaseUrl {
                 contentType(ContentType.JSON).
                 body("id", hasSize(200),
                         "title", hasItem("quis eius est sint explicabo"),
-                        "userId",hasItems(2, 7, 9));
+                        "userId", hasItems(2, 7, 9));
 
     }
 

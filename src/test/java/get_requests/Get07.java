@@ -29,9 +29,9 @@ public class Get07 extends JsonPlaceHolderBaseUrl {
      */
 
     @Test
-    public void get01(){
+    public void get01() {
         //1. Step: Set the Url
-        spec.pathParam("first","todos");
+        spec.pathParam("first", "todos");
 
         //2. Step: Set the expected data
 
@@ -39,7 +39,7 @@ public class Get07 extends JsonPlaceHolderBaseUrl {
         //3. Step: Send the request and get the response
 
         Response response = given().spec(spec).when().get("/{first}");
-        response.prettyPrint();
+        //response.prettyPrint();
 
         //4. Step: Do Assertion
 
@@ -50,7 +50,7 @@ public class Get07 extends JsonPlaceHolderBaseUrl {
         List<Integer> ids = json.getList("findAll{it.id>190}.id");//Groovy Language = Java temelli bir proglamlama dili
         System.out.println(ids);
         //Assert that there are 10 ids greater than 190
-        assertEquals(10,ids.size());
+        assertEquals(10, ids.size());
 
         // 3)Print all userIds whose ids are less than 5 on the console
         List<Integer> ids2 = json.getList("findAll{it.id<5}.userId");

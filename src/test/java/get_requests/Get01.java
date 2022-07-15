@@ -41,28 +41,28 @@ public class Get01 {
             Status Line should be HTTP/1.1 200 OK
      */
 
-@Test
+    @Test
     public void get01() {
-    // i) Set the url
-    String url = "https://restful-booker.herokuapp.com/booking/3";
+        // i) Set the url
+        String url = "https://restful-booker.herokuapp.com/booking/3";
 
-    // ii)Set the expected data(POST_PUT_PATCH)
-
-
-    // iii)Type code to send request
-    Response response = given().when().get(url);
-    response.prettyPrint();
-
-    // iv)Do Assertion
-    response.then().assertThat().statusCode(200).contentType("application/json").statusLine("HTTP/1.1 200 OK");
+        // ii)Set the expected data(POST_PUT_PATCH)
 
 
-    //status code nasil yazdirilir
-    System.out.println(response.statusCode());
+        // iii)Type code to send request
+        Response response = given().when().get(url);
+        response.prettyPrint();
 
-    //content type nasil yazdirilir
-    System.out.println(response.contentType());
+        // iv)Do Assertion
+        response.then().assertThat().statusCode(200).contentType("application/json").statusLine("HTTP/1.1 200 OK");
 
 
-}
+        //status code nasil yazdirilir
+        System.out.println(response.statusCode());
+
+        //content type nasil yazdirilir
+        System.out.println(response.contentType());
+
+
+    }
 }

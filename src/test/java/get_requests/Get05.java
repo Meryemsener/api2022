@@ -1,9 +1,7 @@
 package get_requests;
-
 import base_urls.HerOkuAppBaseUrl;
 import io.restassured.response.Response;
 import org.junit.Test;
-
 import static io.restassured.RestAssured.*;
 import static org.junit.Assert.assertTrue;
 
@@ -18,19 +16,22 @@ public class Get05 extends HerOkuAppBaseUrl {
         Then
             Status code is 200
       And
-         Among the data there should be someone whose firstname is "Adamz" and last name is "Dear"
+         Among the data there should be someone whose firstname is "Aeron" and last name is "Chen"
+
+
      */
 
     @Test
-    public void get01(){
+    public void get01() {
 
         //1. Step: Set the Url
 
         //https://restful-booker.herokuapp.com/booking?firstname=Aaron&lastname=Chen
-        spec.pathParam("first","booking").
+        spec.pathParam("first", "booking").
                 queryParams("firstname", "Aaron",
                         "lastname", "Chen");
-
+        //query params aramalar icinde ozellikle belirli birilerini almak icin kullanilir
+        //pathParam da slash olur.Query de ? olur
         //2. Step: Set the expected data
 
         //3. Step: Send the request and get the response
@@ -44,7 +45,6 @@ public class Get05 extends HerOkuAppBaseUrl {
 
 
     }
-
 
 
 }

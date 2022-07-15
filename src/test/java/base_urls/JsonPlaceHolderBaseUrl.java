@@ -8,7 +8,7 @@ public class JsonPlaceHolderBaseUrl {
 
     protected RequestSpecification spec;
 
-    // @Before annotation u kullndigimiz methotlar her methoddan once calisir
+    // @Before annotation u kullandigimiz methotlar her methoddan once calisir
     @Before
     public void setUp() {
 

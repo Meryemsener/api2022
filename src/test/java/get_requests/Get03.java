@@ -4,6 +4,7 @@ import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -31,13 +32,13 @@ public class Get03 extends JsonPlaceHolderBaseUrl {
         //i) Set the url
         //String url = "https://jsonplaceholder.typicode.com/todos/23"; bu onerilmiyor
         //baseUrl deki spec kullanilir
-        spec.pathParams("first","todos","second",23);
+        spec.pathParams("first", "todos", "second", 23);
 
 
         //      ii)Set the expected data(POST_PUT_PATCH)
 
         //      iii)Type code to send request
-        Response response =given().spec(spec).when().get("/{first}/{second}");
+        Response response = given().spec(spec).when().get("/{first}/{second}");
 
 
         //      iv)Do Assertion
@@ -47,15 +48,15 @@ public class Get03 extends JsonPlaceHolderBaseUrl {
                 assertThat().
                 statusCode(200).
                 contentType("application/json").
-                body("title",equalTo("et itaque necessitatibus maxime molestiae qui quas velit")).
-                body("completed",equalTo("false")).
-                body("userId",equalTo(2));
+                body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit")).
+                body("completed", equalTo("false")).
+                body("userId", equalTo(2));
 
 
         //2. yol
         response.then().assertThat().statusCode(200).
                 contentType(ContentType.JSON).
-                body("title",equalTo("et itaque necessitatibus maxime molestiae qui quas velit"),"completed",equalTo("false"),"userId",equalTo(2));
+                body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit"), "completed", equalTo("false"), "userId", equalTo(2));
 
 /*
       Note 1: Assetion yaparken Java çalışmayı durdurduğunda hata sonrası kodlar çalışmaz.

@@ -6,7 +6,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
 import org.testng.asserts.SoftAssert;
-
 import static io.restassured.RestAssured.*;
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.Matchers.equalTo;
@@ -37,11 +36,11 @@ public class Get06 extends HerOkuAppBaseUrl {
         }
      */
     @Test
-    public void get01(){
+    public void get01() {
 
         //1. Step: Set the Url
 
-        spec.pathParams("first","booking", "second", 101);
+        spec.pathParams("first", "booking", "second", 101);
         //2. Set the expected data
 
         //3. Step: Send the request and get the response
@@ -55,22 +54,30 @@ public class Get06 extends HerOkuAppBaseUrl {
                 assertThat().
                 statusCode(200).
                 contentType(ContentType.JSON).
-                body("firstname",equalTo("GGS"),
-                        "lastname",equalTo("FINCH"),
+                body("firstname", equalTo("GGS"),
+                        "lastname", equalTo("FINCH"),
                         "totalprice", equalTo(111),
                         "depositpaid", equalTo(true),
-                        "bookingdates.checkin",equalTo("2018-01-01"),
-                        "bookingdates.checkout",equalTo("2019-01-01"));
+                        "bookingdates.checkin", equalTo("2018-01-01"),
+                        "bookingdates.checkout", equalTo("2019-01-01"));
+
+        //yukaridaki kodlarda bookingdates outer json oluyor. Onun icindeki data lar da
+        //inner jsaon oluyor. Inner json lara ulasmak icin outer.inner yapmamiz yeterli oluyor
+        //bu da bookingdates.chekin demektir
+
+
 
         //2. Yol: JsonPath Class kullanılır
-
+      //1- JsonPath Objesi oluşturulur.
         JsonPath json = response.jsonPath();
+
+        //2_Obje aracılığı ile assert yapılır
         assertEquals("GGS", json.getString("firstname"));
         assertEquals("FINCH", json.getString("lastname"));
         assertEquals(111, json.getInt("totalprice"));
         assertEquals(true, json.getBoolean("depositpaid"));
         assertEquals("2018-01-01", json.getString("bookingdates.checkin"));
-        assertEquals("2019-01-01",json.getString("bookingdates.checkout"));
+        assertEquals("2019-01-01", json.getString("bookingdates.checkout"));
 
         //3. Yol: Soft Assertion
         //Soft Assertion için 3 adım izlenir;
@@ -80,12 +87,12 @@ public class Get06 extends HerOkuAppBaseUrl {
 
         //2) Obje aracılığı ile assert yapılır.
 
-        softAssert.assertEquals(json.getString("firstname"), "GGS","firstname uyuşmadı");
-        softAssert.assertEquals(json.getString("lastname"),"FINCH","lastname uyuşmadı");
-        softAssert.assertEquals(json.getInt("totalprice"),111,"totalprice uyuşmadı");
-        softAssert.assertEquals(json.getBoolean("depositpaid"),true,"depositpaid uyuşmadı");
-        softAssert.assertEquals(json.getString("bookingdates.checkin"),"2018-01-01","checkin uyuşmadı");
-        softAssert.assertEquals(json.getString("bookingdates.checkout"),"2019-01-01","checkout uyuşmadı");
+        softAssert.assertEquals(json.getString("firstname"), "GGS", "firstname uyuşmadı");
+        softAssert.assertEquals(json.getString("lastname"), "FINCH", "lastname uyuşmadı");
+        softAssert.assertEquals(json.getInt("totalprice"), 111, "totalprice uyuşmadı");
+        softAssert.assertEquals(json.getBoolean("depositpaid"), true, "depositpaid uyuşmadı");
+        softAssert.assertEquals(json.getString("bookingdates.checkin"), "2018-01-01", "checkin uyuşmadı");
+        softAssert.assertEquals(json.getString("bookingdates.checkout"), "2019-01-01", "checkout uyuşmadı");
 
         //3) assertAll() methodu kullanılır. Aksi taktirde kod her zaman pass olur.
         softAssert.assertAll();

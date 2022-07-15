@@ -25,27 +25,27 @@ public class Get02 {
             Server is "Cowboy"
      */
 
-@Test
-    public void get02(){
-    //i) Set the url
-    String  url="https://restful-booker.herokuapp.com/booking/1075";
+    @Test
+    public void get02() {
+        //i) Set the url
+        String url = "https://restful-booker.herokuapp.com/booking/1075";
 
-    //      ii)Set the expected data(POST_PUT_PATCH)
+        //      ii)Set the expected data(POST_PUT_PATCH)
 
-    //      iii)Type code to send request
-    Response response=given().when().get(url);
-    response.prettyPrint();
+        //      iii)Type code to send request
+        Response response = given().when().get(url);
+        response.prettyPrint();
 
-    //      iv)Do Assertion
-    response.then().assertThat().statusCode(404).statusLine("HTTP/1.1 404 Not Found");
+        //      iv)Do Assertion
+        response.then().assertThat().statusCode(404).statusLine("HTTP/1.1 404 Not Found");
 
-    //response body'de bulunn spesifik veri nasil assert edilir
-    assertTrue(response.asString().contains("Not Found"));
+        //response body'de bulunn spesifik veri nasil assert edilir
+        assertTrue(response.asString().contains("Not Found"));
 
-    //response body'de bulunn spesifik veri bulunmadigini nasil assert edilir
-    response.asString().contains("TechProEd");
+        //response body'de bulunn spesifik veri bulunmadigini nasil assert edilir
+        response.asString().contains("TechProEd");
 
-    System.out.println(response.header("Server"));//Cowboy
-    assertEquals("Cowboy",response.header("Server"));//Cowboy
-}
+        System.out.println(response.header("Server"));//Cowboy
+        assertEquals("Cowboy", response.header("Server"));//Cowboy
+    }
 }
